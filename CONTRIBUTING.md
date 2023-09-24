@@ -4,6 +4,8 @@ Welcome to the Terminal Portfolio project! We appreciate your interest in contri
 
 Please take a moment to review the following guidelines to ensure a smooth and positive contribution process.
 
+First time contributor? Don't worry! We will help you throughout the process. Feel free to ask any questions you may have. We are here to help! :)
+
 ## Table of Contents
 
 1. [Getting Started](#getting-started)
