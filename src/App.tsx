@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import data from "../data.json";
+import info from "../data.json";
 import { username, hostname, path, symbol } from "../constants";
 
 type Input = {
   prompt: string;
 };
 
-const options = data.options.map((option) => option.label);
+const options = info.options.map((option) => option.label);
 
 function App() {
   const [history, setHistory] = useState([
@@ -23,9 +23,24 @@ function App() {
     command = command.trim().toLowerCase();
 
     if (options.includes(command)) {
-      const output = data.options.find(
+      let output = info.options.find(
         (option) => option.label === command
       )!.value;
+
+      // check if 'data' exists within the options
+      if (info.options.find((option) => option.label === command)?.data) {
+        console.log("data exists");
+        // append to output
+        const data = info.options.find(
+          (option) => option.label === command
+        )!.data;
+
+        output += data?.map((item) => {
+          return `<br /><br />
+          <strong>${item.label}</strong> <br /> 
+          ${item.value}`;
+        });
+      }
 
       setHistory((history) => [
         ...history,

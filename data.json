@@ -11,7 +11,26 @@
     },
     {
       "label": "projects",
-      "value": "I have worked on many projects"
+      "value": "I have worked on many projects",
+      "data": [
+        {
+          "label": "Wow",
+          "value": "Details of wow",
+          "image": "https://via.placeholder.com/150"
+        },
+        {
+          "label": "project 2",
+          "value": "project 2 description"
+        },
+        {
+          "label": "project 2",
+          "value": "project 2 description"
+        },
+        {
+          "label": "project 2",
+          "value": "project 2 description"
+        }
+      ]
     },
     {
       "label": "contact",
