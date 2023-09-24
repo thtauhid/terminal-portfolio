@@ -81,11 +81,11 @@ function App() {
   };
 
   return (
-    <div className='p-2'>
+    <div className='font-bold text-xl p-2'>
       {
         /* History */
         history.map((history) => (
-          <div>
+          <div className=' mb-2'>
             <Prompt />
             <span>{history.command}</span> <br />
             <span dangerouslySetInnerHTML={{ __html: history.output }} />
@@ -93,7 +93,7 @@ function App() {
         ))
       }
       {/* Prompt */}
-      <div className='font-bold text-xl flex'>
+      <div className='flex'>
         <Prompt />
         <span>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -102,6 +102,7 @@ function App() {
               className='bg-transparent outline-none'
               autoFocus
               {...register("prompt")}
+              autoComplete='off'
             />
           </form>
         </span>
@@ -112,7 +113,7 @@ function App() {
 
 const Prompt = () => {
   return (
-    <span className='font-bold text-xl mr-1'>
+    <span className='mr-1'>
       <span className='text-green-800 '>
         {username}@{hostname}
       </span>
