@@ -13,13 +13,14 @@ Please take a moment to review the following guidelines to ensure a smooth and p
    - [Set Up the Development Environment](#set-up-the-development-environment)
 2. [Making Contributions](#making-contributions)
    - [Branching](#branching)
-   - [Commit Messages](#commit-messages)
-   - [Testing](#testing)
+   - [Writing Code](#writing-code)
    - [Documentation](#documentation)
+   - [Commit Messages](#commit-messages)
+   - [Pushing Changes](#pushing-changes)
+   - [Testing](#testing)
 3. [Submitting Pull Requests](#submitting-pull-requests)
 4. [Review Process](#review-process)
-5. [Community and Communication](#community-and-communication)
-6. [Attribution](#attribution)
+5. [Attribution](#attribution)
 
 ## Getting Started
 
