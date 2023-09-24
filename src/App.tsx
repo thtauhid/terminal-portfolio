@@ -82,7 +82,12 @@ function App() {
         <Prompt />
         <span>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input type='text' className='' {...register("prompt")} />
+            <input
+              type='text'
+              className='bg-transparent outline-none'
+              autoFocus
+              {...register("prompt")}
+            />
           </form>
         </span>
       </div>
