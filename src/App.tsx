@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import data from "../data.json";
-import { useState } from "react";
+import { username, hostname, path, symbol } from "../constants";
 
 type Input = {
   prompt: string;
@@ -90,11 +91,6 @@ function App() {
 }
 
 const Prompt = () => {
-  const username = "visitor";
-  const hostname = "tauhids-portfolio";
-  const path = "~";
-  const symbol = "$";
-
   return (
     <span className='font-bold text-xl mr-1'>
       <span className='text-green-800 '>
