@@ -1,16 +1,29 @@
 {
-  "commands": ["about", "skills", "projects", "contact"],
+  "additional_commands": [
+    {
+      "label": "help",
+      "about": "View all commands"
+    },
+    {
+      "label": "clear",
+      "about": "Clear the screen"
+    }
+  ],
+
   "options": [
     {
       "label": "about",
+      "about": "To know about me",
       "value": "Hello, my name is Tauhid"
     },
     {
       "label": "skills",
+      "about": "To know about my skills",
       "value": "I am a full stack developer"
     },
     {
       "label": "projects",
+      "about": "To know about my projects",
       "value": "I have worked on many projects",
       "data": [
         {
@@ -34,6 +47,7 @@
     },
     {
       "label": "contact",
+      "about": "To get my contact details",
       "value": "You can contact me at heytauhid@outlook.com"
     }
   ]

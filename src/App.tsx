@@ -57,7 +57,13 @@ function App() {
             command: command,
             output:
               "Here are the available commands: <br />" +
-              options.join("<br />"),
+              info.options
+                .map((option) => option.label + " - " + option.about)
+                .join("<br />") +
+              "<br />" +
+              info.additional_commands
+                .map((option) => option.label + " - " + option.about)
+                .join("<br />"),
           },
         ]);
       } else if (command === "clear") {
