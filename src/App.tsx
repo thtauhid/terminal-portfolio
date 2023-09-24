@@ -81,7 +81,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className='p-2'>
       {
         /* History */
         history.map((history) => (
