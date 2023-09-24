@@ -51,6 +51,11 @@ Some of the popular ones are:
 
 Feel free to open an issue if you find a bug or want to suggest a feature.
 
+### Hacktoberfest
+
+1. Please start contributing after October 1st, 2023 and before October 31st, 2023 if you want to participate in Hacktoberfest 2023.
+1. If you are participating in Hacktoberfest, please make sure to read the [rules](https://hacktoberfest.com/participation/) before opening a pull request.
+
 ## License
 
 MIT License
