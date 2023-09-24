@@ -39,5 +39,18 @@ Some of the popular ones are:
 
 ## Contributing
 
-Pull requests are welcome.
-For major changes, please open an issue first to discuss what you would like to change.
+1. Go to [issues](https://github.com/thtauhid/terminal-portfolio/issues)
+1. Find an issue that you can solve
+1. Comment on the issue that you want to solve it
+1. Fork this repository
+1. Create a new branch
+1. Commit your changes
+1. Push to the branch
+1. Create a new pull request
+1. Wait for the maintainers to review
+
+Feel free to open an issue if you find a bug or want to suggest a feature.
+
+## License
+
+MIT License
