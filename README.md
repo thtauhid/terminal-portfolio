@@ -11,7 +11,7 @@ Production: https://my-terminal-portfolio.vercel.app/
 ```bash
 git clone https://github.com/thtauhid/terminal-portfolio
 cd terminal-portfolio
-pnpm install
+npm install
 ```
 
 ## Usage
@@ -19,13 +19,13 @@ pnpm install
 To run the development server:
 
 ```bash
-pnpm run dev
+npm run dev
 ```
 
 To build the project:
 
 ```bash
-pnpm run build
+npm run build
 ```
 
 ## Deployment
@@ -34,7 +34,7 @@ You can deploy this project to any static site hosting service.
 
 Some of the popular ones are:
 
-- [Vercel](https://vercel.com/)
+- [Vercel](https://vercel.com/) (Recommended)
 - [Netlify](https://www.netlify.com/)
 
 ## Contributing
