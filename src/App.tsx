@@ -1,35 +1,107 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useForm, SubmitHandler } from "react-hook-form";
+
+import data from "../data.json";
+import { useState } from "react";
+
+type Input = {
+  prompt: string;
+};
+
+const options = data.options.map((option) => option.label);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [history, setHistory] = useState([
+    {
+      command: "help",
+      output:
+        "Here are the available commands: <br />" + options.join("<br />"),
+    },
+  ]);
+
+  const executeCommand = (command: Input["prompt"]) => {
+    command = command.trim().toLowerCase();
+
+    if (options.includes(command)) {
+      const output = data.options.find(
+        (option) => option.label === command
+      )!.value;
+
+      setHistory((history) => [
+        ...history,
+        {
+          command,
+          output,
+        },
+      ]);
+    } else {
+      if (command === "help") {
+        setHistory((history) => [
+          ...history,
+          {
+            command: command,
+            output:
+              "Here are the available commands: <br />" +
+              options.join("<br />"),
+          },
+        ]);
+      } else {
+        setHistory((history) => [
+          ...history,
+          {
+            command: command,
+            output: "command not found",
+          },
+        ]);
+      }
+    }
+  };
+
+  const { register, handleSubmit, reset } = useForm<Input>();
+  const onSubmit: SubmitHandler<Input> = (data) => {
+    executeCommand(data.prompt);
+    reset();
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      {
+        /* History */
+        history.map((history) => (
+          <div>
+            <Prompt />
+            <span>{history.command}</span> <br />
+            <span dangerouslySetInnerHTML={{ __html: history.output }} />
+          </div>
+        ))
+      }
+      {/* Prompt */}
+      <div className='font-bold text-xl flex'>
+        <Prompt />
+        <span>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input type='text' className='' {...register("prompt")} />
+          </form>
+        </span>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+const Prompt = () => {
+  const username = "visitor";
+  const hostname = "tauhids-portfolio";
+  const path = "~";
+  const symbol = "$";
+
+  return (
+    <span className='font-bold text-xl mr-1'>
+      <span className='text-green-800 '>
+        {username}@{hostname}
+      </span>
+      :<span className='text-blue-700'>{path}</span>
+      {symbol}
+    </span>
+  );
+};
+
+export default App;
