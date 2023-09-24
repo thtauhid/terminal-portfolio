@@ -1,27 +1,43 @@
-# React + TypeScript + Vite
+# terminal-portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About
 
-Currently, two official plugins are available:
+A portfolio site template that looks and feels like a terminal.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Production: https://my-terminal-portfolio.vercel.app/
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+git clone https://github.com/thtauhid/terminal-portfolio
+cd terminal-portfolio
+pnpm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Usage
+
+To run the development server:
+
+```bash
+pnpm run dev
+```
+
+To build the project:
+
+```bash
+pnpm run build
+```
+
+## Deployment
+
+You can deploy this project to any static site hosting service.
+
+Some of the popular ones are:
+
+- [Vercel](https://vercel.com/)
+- [Netlify](https://www.netlify.com/)
+
+## Contributing
+
+Pull requests are welcome.
+For major changes, please open an issue first to discuss what you would like to change.
