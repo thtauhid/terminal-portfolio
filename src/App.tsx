@@ -68,7 +68,15 @@ function App() {
         ]);
       } else if (command === "clear") {
         setHistory([]);
-      } else {
+      } else if (command === ""){
+        setHistory((history) => [
+          ...history,
+          {
+            command: command,
+            output: "",
+          },
+        ]);
+      }else {
         setHistory((history) => [
           ...history,
           {
