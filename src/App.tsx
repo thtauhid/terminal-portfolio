@@ -44,6 +44,8 @@ function App() {
               options.join("<br />"),
           },
         ]);
+      } else if (command === "clear") {
+        setHistory([]);
       } else {
         setHistory((history) => [
           ...history,
