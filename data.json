@@ -27,21 +27,20 @@
       "value": "I have worked on many projects",
       "data": [
         {
-          "label": "Wow",
-          "value": "Details of wow",
-          "image": "https://via.placeholder.com/150"
+          "label": "E-commerce Website",
+          "value": "A full-featured online store with payment processing and product catalog."
         },
         {
-          "label": "project 2",
-          "value": "project 2 description"
+          "label": "Inventory Management System",
+          "value": "An application for tracking and managing inventory in a warehouse."
         },
         {
-          "label": "project 2",
-          "value": "project 2 description"
+          "label": "Social Media Analytics Dashboard",
+          "value": "A tool for analyzing social media data and generating reports."
         },
         {
-          "label": "project 2",
-          "value": "project 2 description"
+          "label": "Chat Application",
+          "value": "Real-time messaging app with support for group chats and emojis."
         }
       ]
     },
