@@ -1,3 +1,5 @@
+![image](https://github.com/thtauhid/terminal-portfolio/assets/13254850/23ecf4cd-89d4-4eed-aa2c-5a6c31f96c51)
+
 # terminal-portfolio
 
 ## About
@@ -39,17 +41,14 @@ Some of the popular ones are:
 
 ## Contributing
 
-1. Go to [issues](https://github.com/thtauhid/terminal-portfolio/issues)
-1. Find an issue that you can solve
-1. Comment on the issue that you want to solve it
-1. Fork this repository
-1. Create a new branch
-1. Commit your changes
-1. Push to the branch
-1. Create a new pull request
-1. Wait for the maintainers to review
+[Contributing Guide](CONTRIBUTING.md)
 
 Feel free to open an issue if you find a bug or want to suggest a feature.
+
+### Hacktoberfest
+
+1. Please start contributing after October 1st, 2023 and before October 31st, 2023 if you want to participate in Hacktoberfest 2023.
+1. If you are participating in Hacktoberfest, please make sure to read the [rules](https://hacktoberfest.com/participation/) before opening a pull request.
 
 ## License
 
