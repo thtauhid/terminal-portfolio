@@ -30,6 +30,22 @@ To build the project:
 npm run build
 ```
 
+## Technologies Used
+
+1. Vite: Vite is a build tool that helps make your web development faster by providing quick development server and efficient production builds.
+
+2. React: React is a JavaScript library for building user interfaces. It helps create interactive and reusable components for web applications.
+
+3. React Hook Form: React Hook Form is a library for managing and validating form input in React applications. It simplifies form handling.
+
+4. TypeScript: TypeScript is a programming language that adds static typing to JavaScript, making it easier to catch and prevent common errors in your code.
+
+5. ESLint: ESLint is a tool for identifying and fixing common errors and maintaining code quality in JavaScript and TypeScript.
+
+6. Tailwind CSS: Tailwind CSS is a utility-first CSS framework that simplifies styling by providing pre-built classes for common styles.
+
+7. Vercel Analytics: This is a package for adding analytics and monitoring to your web application, often used for tracking user interactions and performance.
+
 ## Deployment
 
 You can deploy this project to any static site hosting service.
