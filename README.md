@@ -30,7 +30,7 @@ To build the project:
 npm run build
 ```
 
-## Technologies in package.json
+## Technologies Used
 
 1. Vite: Vite is a build tool that helps make your web development faster by providing quick development server and efficient production builds.
 
@@ -44,13 +44,7 @@ npm run build
 
 6. Tailwind CSS: Tailwind CSS is a utility-first CSS framework that simplifies styling by providing pre-built classes for common styles.
 
-7. PostCSS and Autoprefixer: PostCSS is a tool for transforming CSS with plugins. Autoprefixer is one such plugin that adds vendor prefixes to your CSS for better cross-browser compatibility.
-
-8. @vercel/analytics: This is a package for adding analytics and monitoring to your web application, often used for tracking user interactions and performance.
-
-9. @vitejs/plugin-react: This is a Vite plugin specifically designed for React applications, enhancing the development experience.
-
-Other Dependencies: These include various versions of React and related packages, TypeScript-related tools, and plugins for enhancing development and building processes.
+7. Vercel Analytics: This is a package for adding analytics and monitoring to your web application, often used for tracking user interactions and performance.
 
 ## Deployment
 
