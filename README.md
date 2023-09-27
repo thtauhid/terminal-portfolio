@@ -65,6 +65,8 @@ Feel free to open an issue if you find a bug or want to suggest a feature.
 
 1. Please start contributing after October 1st, 2023 and before October 31st, 2023 if you want to participate in Hacktoberfest 2023.
 1. If you are participating in Hacktoberfest, please make sure to read the [rules](https://hacktoberfest.com/participation/) before opening a pull request.
+1. The maintainer(s) of will add the `hacktoberfest-accepted` label after reviewing and accepting your pull request.
+1. Refer to the dedicated [hacktoberfest project view](https://github.com/users/thtauhid/projects/1/views/2) to see what issues are available to work on.
 
 ## Contributors
 
