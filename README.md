@@ -71,6 +71,7 @@ Feel free to open an issue if you find a bug or want to suggest a feature.
 <a href="https://github.com/thtauhid/terminal-portfolio/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=thtauhid/terminal-portfolio" />
 </a>
+
 Made with [contrib.rocks](https://contrib.rocks).
 
 ## License
