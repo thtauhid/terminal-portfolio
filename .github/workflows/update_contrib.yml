@@ -2,7 +2,7 @@ name: Add contributors
 on:
   push:
     branches:
-      - main
+      - main,27-auto-add-contributors-in-readme
 
 jobs:
   add-contributors:
