@@ -1,12 +1,7 @@
-import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useEffect, useRef, useState } from "react";
 
 import info from "../data.json";
 import { username, hostname, path, symbol } from "../constants";
-
-type Input = {
-  prompt: string;
-};
 
 const options = info.options.map((option) => option.label);
 
@@ -19,7 +14,9 @@ function App() {
     },
   ]);
 
-  const executeCommand = (command: Input["prompt"]) => {
+  const [userInput, setUserInput] = useState("");
+
+  const executeCommand = (command: string) => {
     command = command.trim().toLowerCase();
 
     if (options.includes(command)) {
@@ -68,7 +65,7 @@ function App() {
         ]);
       } else if (command === "clear") {
         setHistory([]);
-      } else if (command === ""){
+      } else if (command === "") {
         setHistory((history) => [
           ...history,
           {
@@ -76,7 +73,7 @@ function App() {
             output: "",
           },
         ]);
-      }else {
+      } else {
         setHistory((history) => [
           ...history,
           {
@@ -88,11 +85,31 @@ function App() {
     }
   };
 
-  const { register, handleSubmit, reset } = useForm<Input>();
-  const onSubmit: SubmitHandler<Input> = (data) => {
-    executeCommand(data.prompt);
-    reset();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const focusInput = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInput(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    executeCommand(userInput);
+    setUserInput("");
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", focusInput);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("click", focusInput);
+    };
+  }, []);
 
   return (
     <div className='font-bold text-xl p-2'>
@@ -107,15 +124,17 @@ function App() {
         ))
       }
       {/* Prompt */}
-      <div className='flex'>
+      <div className='flex flex-col sm:flex-row'>
         <Prompt />
         <span>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit} className='mt-2 sm:mt-0'>
             <input
               type='text'
-              className='bg-transparent outline-none'
+              className='w-[350px] bg-transparent outline-none'
               autoFocus
-              {...register("prompt")}
+              value={userInput}
+              onChange={handleInputChange}
+              ref={inputRef}
               autoComplete='off'
             />
           </form>
