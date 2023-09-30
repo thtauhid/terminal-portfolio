@@ -73,6 +73,14 @@ function App() {
             output: "",
           },
         ]);
+      } else if (command === "history") {
+        setHistory((history) => [
+          ...history,
+          {
+            command: command,
+            output: "",
+          },
+        ]);
       } else {
         setHistory((history) => [
           ...history,
