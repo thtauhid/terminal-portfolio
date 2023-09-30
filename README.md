@@ -30,6 +30,22 @@ To build the project:
 npm run build
 ```
 
+## Technologies Used
+
+1. Vite: Vite is a build tool that helps make your web development faster by providing quick development server and efficient production builds.
+
+2. React: React is a JavaScript library for building user interfaces. It helps create interactive and reusable components for web applications.
+
+3. React Hook Form: React Hook Form is a library for managing and validating form input in React applications. It simplifies form handling.
+
+4. TypeScript: TypeScript is a programming language that adds static typing to JavaScript, making it easier to catch and prevent common errors in your code.
+
+5. ESLint: ESLint is a tool for identifying and fixing common errors and maintaining code quality in JavaScript and TypeScript.
+
+6. Tailwind CSS: Tailwind CSS is a utility-first CSS framework that simplifies styling by providing pre-built classes for common styles.
+
+7. Vercel Analytics: This is a package for adding analytics and monitoring to your web application, often used for tracking user interactions and performance.
+
 ## Deployment
 
 You can deploy this project to any static site hosting service.
@@ -49,6 +65,16 @@ Feel free to open an issue if you find a bug or want to suggest a feature.
 
 1. Please start contributing after October 1st, 2023 and before October 31st, 2023 if you want to participate in Hacktoberfest 2023.
 1. If you are participating in Hacktoberfest, please make sure to read the [rules](https://hacktoberfest.com/participation/) before opening a pull request.
+1. The maintainer(s) of will add the `hacktoberfest-accepted` label after reviewing and accepting your pull request.
+1. Refer to the dedicated [hacktoberfest project view](https://github.com/users/thtauhid/projects/1/views/2) to see what issues are available to work on.
+
+## Contributors
+
+<a href="https://github.com/thtauhid/terminal-portfolio/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=thtauhid/terminal-portfolio" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 
 ## License
 
