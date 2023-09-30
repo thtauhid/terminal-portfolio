@@ -78,7 +78,7 @@ function App() {
           ...history,
           {
             command: command,
-            output: "",
+            output: "history",
           },
         ]);
       } else {
