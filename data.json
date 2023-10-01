@@ -7,6 +7,10 @@
     {
       "label": "clear",
       "about": "Clear the screen"
+    },
+    {
+      "label": "history",
+      "about": "To know about history"
     }
   ],
 
