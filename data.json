@@ -11,6 +11,10 @@
     {
       "label": "history",
       "about": "To know about history"
+    },
+    {
+      "label": "setname",
+      "about": "To replace default 'visitor' name with your name"
     }
   ],
   "options": [

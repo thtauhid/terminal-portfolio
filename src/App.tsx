@@ -17,7 +17,7 @@ function App() {
         "Here are the available commands: <br />" + options.join("<br />"),
     },
   ]);
-
+  const [customUserName, setCustomUserName] = useState("");
   const [userInput, setUserInput] = useState("");
   const handleArrowKeyPress = (event: { key: string }) => {
     if (event.key === "ArrowUp") {
@@ -104,6 +104,22 @@ function App() {
             output: displayHistory(),
           },
         ]);
+      }
+      // functionality for setname command
+      else if (command.trim().startsWith("setname")) {
+        // get the name from the command
+        const splitCommand = command.split(" ");
+        const name = splitCommand.slice(1).join(" ");
+        // set the custom username
+        setCustomUserName(name);
+        // update history
+        setHistory((history) => [
+          ...history,
+          {
+            command: command,
+            output: `Hello ${name}!`,
+          },
+        ]);
       } else {
         setHistory((history) => [
           ...history,
@@ -157,7 +173,7 @@ function App() {
         /* History */
         history.map((history) => (
           <div className=" mb-2">
-            <Prompt />
+            <Prompt customUserName={customUserName} />
             <span>{history.command}</span> <br />
             <span dangerouslySetInnerHTML={{ __html: history.output }} />
           </div>
@@ -165,7 +181,7 @@ function App() {
       }
       {/* Prompt */}
       <div className="flex flex-col sm:flex-row">
-        <Prompt />
+        <Prompt customUserName={customUserName} />
         <span>
           <form onSubmit={handleSubmit} className="mt-2 sm:mt-0">
             <input
@@ -185,11 +201,12 @@ function App() {
   );
 }
 
-const Prompt = () => {
+const Prompt = (props: { customUserName: string }) => {
   return (
     <span className="mr-1">
       <span className="text-green-800 ">
-        {username}@{hostname}
+        {props.customUserName == "" ? username : props.customUserName}@
+        {hostname}
       </span>
       :<span className="text-blue-700">{path}</span>
       {symbol}
