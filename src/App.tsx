@@ -1,13 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  JSXElementConstructor,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import info from "../data.json";
 import { username, hostname, path, symbol } from "../constants";
 
 const options = info.options.map((option) => option.label);
-import { Queue } from 'queue-typescript';
+import { Queue } from "queue-typescript";
 
-let historyCommand=new Queue<string>();
-let count=1;
+let historyCommand = new Queue<string>();
+let count = 1;
 
 function App() {
   const [history, setHistory] = useState([
@@ -18,12 +25,14 @@ function App() {
     },
   ]);
 
+  const [customUserName, setCustomUserName] = useState("");
+
   const [userInput, setUserInput] = useState("");
 
   const executeCommand = (command: string) => {
     command = command.trim().toLowerCase();
-    if(command !== "history"){
-      historyCommand.enqueue((count++)+` `+command+`<br>`);
+    if (command !== "history") {
+      historyCommand.enqueue(count++ + ` ` + command + `<br>`);
     }
     if (options.includes(command)) {
       let output = info.options.find(
@@ -87,6 +96,21 @@ function App() {
             output: displayHistory(),
           },
         ]);
+      }
+      // functionality for setname command
+      else if (command.trim().startsWith("setname")) {
+        // get the name from the command
+        const name = command.split(" ")[1];
+        // set the custom username
+        setCustomUserName(name);
+        // update history
+        setHistory((history) => [
+          ...history,
+          {
+            command: command,
+            output: `Hello ${name}!`,
+          },
+        ]);
       } else {
         setHistory((history) => [
           ...history,
@@ -99,14 +123,14 @@ function App() {
     }
   };
 
-  const displayHistory=()=>{
-    let his="";
-    let HistoryArray=historyCommand.toArray();
-    HistoryArray.forEach(i=>{
-      his+=i;
-    })
+  const displayHistory = () => {
+    let his = "";
+    let HistoryArray = historyCommand.toArray();
+    HistoryArray.forEach((i) => {
+      his += i;
+    });
     return his;
-  }
+  };
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const focusInput = () => {
@@ -135,30 +159,30 @@ function App() {
   }, []);
 
   return (
-    <div className='font-bold text-xl p-2'>
+    <div className="font-bold text-xl p-2">
       {
         /* History */
         history.map((history) => (
-          <div className=' mb-2'>
-            <Prompt />
+          <div className=" mb-2">
+            <Prompt customUserName={customUserName} />
             <span>{history.command}</span> <br />
             <span dangerouslySetInnerHTML={{ __html: history.output }} />
           </div>
         ))
       }
       {/* Prompt */}
-      <div className='flex flex-col sm:flex-row'>
-        <Prompt />
+      <div className="flex flex-col sm:flex-row">
+        <Prompt customUserName={customUserName} />
         <span>
-          <form onSubmit={handleSubmit} className='mt-2 sm:mt-0'>
+          <form onSubmit={handleSubmit} className="mt-2 sm:mt-0">
             <input
-              type='text'
-              className='w-[350px] bg-transparent outline-none'
+              type="text"
+              className="w-[350px] bg-transparent outline-none"
               autoFocus
               value={userInput}
               onChange={handleInputChange}
               ref={inputRef}
-              autoComplete='off'
+              autoComplete="off"
             />
           </form>
         </span>
@@ -167,13 +191,14 @@ function App() {
   );
 }
 
-const Prompt = () => {
+const Prompt = (props: { customUserName: string }) => {
   return (
-    <span className='mr-1'>
-      <span className='text-green-800 '>
-        {username}@{hostname}
+    <span className="mr-1">
+      <span className="text-green-800 ">
+        {props.customUserName == "" ? username : props.customUserName}@
+        {hostname}
       </span>
-      :<span className='text-blue-700'>{path}</span>
+      :<span className="text-blue-700">{path}</span>
       {symbol}
     </span>
   );
