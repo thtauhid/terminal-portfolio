@@ -4,8 +4,9 @@ import info from "../data.json";
 import { username, hostname, path, symbol } from "../constants";
 
 const options = info.options.map((option) => option.label);
+import { Queue } from 'queue-typescript';
 
-let historyCommand:string="";
+let historyCommand=new Queue<string>();
 let count=1;
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
   const executeCommand = (command: string) => {
     command = command.trim().toLowerCase();
     if(command !== "history"){
-      historyCommand=historyCommand+(count++)+` `+command+`<br>`;
+      historyCommand.enqueue((count++)+` `+command+`<br>`);
     }
     if (options.includes(command)) {
       let output = info.options.find(
@@ -83,7 +84,7 @@ function App() {
           ...history,
           {
             command: command,
-            output: historyCommand,
+            output: displayHistory(),
           },
         ]);
       } else {
@@ -97,6 +98,15 @@ function App() {
       }
     }
   };
+
+  const displayHistory=()=>{
+    let his="";
+    let HistoryArray=historyCommand.toArray();
+    HistoryArray.forEach(i=>{
+      his+=i;
+    })
+    return his;
+  }
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const focusInput = () => {
