@@ -100,7 +100,8 @@ function App() {
       // functionality for setname command
       else if (command.trim().startsWith("setname")) {
         // get the name from the command
-        const name = command.split(" ")[1];
+        const splitCommand = command.split(" ");
+        const name = splitCommand.slice(1).join(" ");
         // set the custom username
         setCustomUserName(name);
         // update history
