@@ -112,11 +112,9 @@ function App() {
   }, []);
 
   return (
-    <div className= "w-screen h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
-      <p className='pt-4 justify-center text-3xl font-bold text-center flex hover:scale-105 duration-300 hover:text-blue-300'>Welcome to my portfolio!</p>
-      <p className='text-gray-400 justify-start text-lg pl-2 mt-8 text-start flex'>Instructions - This portfolio is a replica of a terminal. You need to provide commands for any functionality. </p>
-      <p className='text-gray-400 justify-start text-lg pl-2 text-start flex'>Hint - Use 'clear' command to clear the terminal. </p>
-    <div className='font-semibold text-xl p-2'>
+    <div>
+      <p className='justi text-2xl font-bold text-center flex hover:scale-105 duration-300 hover:text-blue-300'>Welcome to my portfolio!</p>
+    <div className='font-bold text-xl p-2'>
       {
         /* History */
         history.map((history) => (
@@ -134,7 +132,7 @@ function App() {
           <form onSubmit={handleSubmit} className='mt-2 sm:mt-0'>
             <input
               type='text'
-              className='w-[350px] bg-transparent outline-none font-semibold'
+              className='w-[350px] bg-transparent outline-none'
               autoFocus
               value={userInput}
               onChange={handleInputChange}
@@ -152,7 +150,7 @@ function App() {
 const Prompt = () => {
   return (
     <span className='mr-1'>
-      <span className='text-green-400 '>
+      <span className='text-green-800 '>
         {username}@{hostname}
       </span>
       :<span className='text-blue-700'>{path}</span>
