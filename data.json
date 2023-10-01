@@ -17,7 +17,7 @@
     {
       "label": "about",
       "about": "To know about me",
-      "value": "Hey there! I'm Tauhid, a passionate software engineer with a love for crafting digital solutions."
+      "value": "Hey there! I'm John Doe, a passionate software engineer with a love for crafting digital solutions."
     },
     {
       "label": "skills",
@@ -50,7 +50,7 @@
     {
       "label": "contact",
       "about": "To get my contact details",
-      "value": "Feel free to reach out! You can contact me at heytauhid@outlook.com for any inquiries or collaborations."
+      "value": "Feel free to reach out! You can contact me at john.doe@example.com for any inquiries or collaborations."
     }
   ]
 }
