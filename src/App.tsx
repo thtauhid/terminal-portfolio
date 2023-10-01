@@ -6,7 +6,7 @@ import { username, hostname, path, symbol } from "../constants";
 const options = info.options.map((option) => option.label);
 import { Queue } from "queue-typescript";
 
-let historyCommand = new Queue<string>();
+const historyCommand = new Queue<string>();
 let count = 1;
 let historyPos = 1;
 function App() {
@@ -21,15 +21,15 @@ function App() {
   const [userInput, setUserInput] = useState("");
   const handleArrowKeyPress = (event: { key: string }) => {
     if (event.key === "ArrowUp") {
-      if (historyPos>0){
-        setUserInput(history[historyPos-1]["command"]);
-        historyPos-=1
+      if (historyPos > 0) {
+        setUserInput(history[historyPos - 1]["command"]);
+        historyPos -= 1;
       }
     } else if (event.key === "ArrowDown") {
-      if (historyPos<history.length-1){
-        setUserInput(history[historyPos+1]["command"])
-        historyPos+=1
-      } else if (historyPos=history.length){
+      if (historyPos < history.length - 1) {
+        setUserInput(history[historyPos + 1]["command"]);
+        historyPos += 1;
+      } else if ((historyPos = history.length)) {
         setUserInput("");
         // historyPos+=1
       }
@@ -37,7 +37,7 @@ function App() {
   };
   const executeCommand = (command: string) => {
     command = command.trim().toLowerCase();
-    historyPos=history.length+1
+    historyPos = history.length + 1;
     if (command !== "history") {
       historyCommand.enqueue(count++ + ` ` + command + `<br>`);
     }
@@ -87,7 +87,7 @@ function App() {
         ]);
       } else if (command === "clear") {
         setHistory([]);
-        historyPos-=1;
+        historyPos -= 1;
       } else if (command === "") {
         setHistory((history) => [
           ...history,
@@ -118,7 +118,7 @@ function App() {
 
   const displayHistory = () => {
     let his = "";
-    let HistoryArray = historyCommand.toArray();
+    const HistoryArray = historyCommand.toArray();
     HistoryArray.forEach((i) => {
       his += i;
     });
