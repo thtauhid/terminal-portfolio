@@ -29,6 +29,9 @@ function App() {
       if (historyPos<history.length-1){
         setUserInput(history[historyPos+1]["command"])
         historyPos+=1
+      } else if (historyPos=history.length){
+        setUserInput("");
+        // historyPos+=1
       }
     }
   };
@@ -84,7 +87,7 @@ function App() {
         ]);
       } else if (command === "clear") {
         setHistory([]);
-        historyPos=0;
+        historyPos-=1;
       } else if (command === "") {
         setHistory((history) => [
           ...history,
