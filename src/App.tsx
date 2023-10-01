@@ -5,6 +5,9 @@ import { username, hostname, path, symbol } from "../constants";
 
 const options = info.options.map((option) => option.label);
 
+let historyCommand:string="";
+let count=1;
+
 function App() {
   const [history, setHistory] = useState([
     {
@@ -18,7 +21,9 @@ function App() {
 
   const executeCommand = (command: string) => {
     command = command.trim().toLowerCase();
-
+    if(command !== "history"){
+      historyCommand=historyCommand+(count++)+` `+command+`<br>`;
+    }
     if (options.includes(command)) {
       let output = info.options.find(
         (option) => option.label === command
@@ -78,7 +83,7 @@ function App() {
           ...history,
           {
             command: command,
-            output: "history",
+            output: historyCommand,
           },
         ]);
       } else {
