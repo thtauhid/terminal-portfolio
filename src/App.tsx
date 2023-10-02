@@ -36,6 +36,13 @@ function App() {
     }
   };
   const executeCommand = (command: string) => {
+    if (command.trim().startsWith("setname")){
+      command = command;
+      //Handled by previous commit
+    }
+    else{
+      command = (command.split(" "))[0];
+    }
     command = command.trim().toLowerCase();
     historyPos = history.length + 1;
     if (command !== "history") {
