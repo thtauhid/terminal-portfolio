@@ -29,6 +29,21 @@
       "value": "I'm a versatile full-stack developer, adept at turning ideas into robust web applications. <br /> <br /> Proficient in MERN stack, Redux, React-Redux, Tailwind CSS, SQL, RESTful APIs and many more."
     },
     {
+      "label": "experience",
+      "about": "To know about my experience",
+      "value": "I have more than 10 years of experience.",
+      "data": [
+        {
+          "label": "Random Pvt Ltd",
+          "value": "Senior software engineer <br />  Year:  2015-present"
+        },
+        {
+          "label": "Example Pvt Ltd",
+          "value": "Associate Software engineer <br />  Year:  2010-2015"
+        }
+      ]
+    },
+    {
       "label": "projects",
       "about": "To know about my projects",
       "value": "I've had the pleasure of working on diverse projects that showcase my skills and creativity.",
