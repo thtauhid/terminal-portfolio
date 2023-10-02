@@ -55,6 +55,40 @@ Some of the popular ones are:
 - [Vercel](https://vercel.com/) (Recommended)
 - [Netlify](https://www.netlify.com/)
 
+### Deploying to Vercel
+
+Vercel is a recommended platform for deploying your terminal-portfolio. Here are the steps to deploy your project to Vercel and enable Vercel Analytics:
+
+1. Sign in to your Vercel account or create one if you don't have an account yet.
+
+2. Install the Vercel CLI by running the following command:
+
+```bash
+npm install -g vercel
+```
+
+3. Authenticate your Vercel account using the following command:
+
+```bash
+vercel login
+```
+
+4. Navigate to your project directory:
+
+```bash
+cd terminal-portfolio
+```
+
+5. Deploy your project to Vercel:
+
+```bash
+vercel
+```
+
+6. Follow the prompts to configure your deployment settings. Make sure to choose a domain name and set up the deployment environment according to your preferences.
+
+7. Once the deployment is complete, your terminal-portfolio will be live on Vercel, and Vercel Analytics will be enabled by default, providing you with valuable insights into your website's performance.
+
 ## Contributing
 
 [Contributing Guide](CONTRIBUTING.md)
@@ -63,10 +97,11 @@ Feel free to open an issue if you find a bug or want to suggest a feature.
 
 ### Hacktoberfest
 
-1. Please start contributing after October 1st, 2023 and before October 31st, 2023 if you want to participate in Hacktoberfest 2023.
-1. If you are participating in Hacktoberfest, please make sure to read the [rules](https://hacktoberfest.com/participation/) before opening a pull request.
-1. The maintainer(s) of will add the `hacktoberfest-accepted` label after reviewing and accepting your pull request.
-1. Refer to the dedicated [hacktoberfest project view](https://github.com/users/thtauhid/projects/1/views/2) to see what issues are available to work on.
+1. Star the project.
+2. Join our [Discord server](https://discord.gg/3jvahVGKfa) to discuss ideas and ask questions.
+3. Please make sure to read the [rules](https://hacktoberfest.com/participation/) before opening a pull request.
+4. The maintainer(s) will add the `hacktoberfest-accepted` label after reviewing and accepting your pull request.
+5. Refer to the dedicated [hacktoberfest project view](https://github.com/users/thtauhid/projects/1/views/2) to see what issues are available to work on.
 
 ## Contributors
 
