@@ -36,12 +36,11 @@ function App() {
     }
   };
   const executeCommand = (command: string) => {
-    if (command.trim().startsWith("setname")){
+    if (command.trim().startsWith("setname")) {
       command = command;
       //Handled by previous commit
-    }
-    else{
-      command = (command.split(" "))[0];
+    } else {
+      command = command.split(" ")[0];
     }
     command = command.trim().toLowerCase();
     historyPos = history.length + 1;
@@ -175,54 +174,57 @@ function App() {
   }, []);
 
   return (
-    <div className= "w-screen h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
-      <p className='pt-4 justify-center text-3xl font-bold text-center flex'>Welcome to my portfolio!</p>
-      <p className='text-gray-400 justify-start text-lg pl-2 mt-8 text-start flex'>Instructions - This portfolio is a replica of a terminal. You need to provide commands for any functionality. </p>
-      <p className='text-gray-400 justify-start text-lg pl-2 text-start flex'>Hint - Use 'clear' command to clear the terminal. </p>
-    <div className='font-semibold text-xl p-2'>
-    <div className="font-bold text-xl p-2">
-      {
-        /* History */
-        history.map((history) => (
-          <div className=" mb-2">
+    <div className="w-screen h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
+      <p className="pt-4 justify-center text-3xl font-bold text-center flex">
+        Welcome to my portfolio!
+      </p>
+      <p className="text-gray-400 justify-start text-lg pl-2 mt-8 text-start flex">
+        Instructions - This portfolio is a replica of a terminal. You need to
+        provide commands for any functionality.{" "}
+      </p>
+      <p className="text-gray-400 justify-start text-lg pl-2 text-start flex">
+        Hint - Use 'clear' command to clear the terminal.{" "}
+      </p>
+      <div className="font-semibold text-xl p-2">
+        <div className="font-bold text-xl p-2">
+          {
+            /* History */
+            history.map((history) => (
+              <div className=" mb-2">
+                <Prompt customUserName={customUserName} />
+                <span>{history.command}</span> <br />
+                <span dangerouslySetInnerHTML={{ __html: history.output }} />
+              </div>
+            ))
+          }
+          {/* Prompt */}
+          <div className="flex flex-col sm:flex-row">
             <Prompt customUserName={customUserName} />
-            <span>{history.command}</span> <br />
-            <span dangerouslySetInnerHTML={{ __html: history.output }} />
+            <span>
+              <form onSubmit={handleSubmit} className="mt-2 sm:mt-0">
+                <input
+                  type="text"
+                  className="w-[350px] bg-transparent outline-none font-semibold"
+                  autoFocus
+                  value={userInput}
+                  onChange={handleInputChange}
+                  onKeyDown={handleArrowKeyPress}
+                  ref={inputRef}
+                  autoComplete="off"
+                />
+              </form>
+            </span>
           </div>
-        ))
-      }
-      {/* Prompt */}
-      <div className="flex flex-col sm:flex-row">
-        <Prompt customUserName={customUserName} />
-        <span>
-          <form onSubmit={handleSubmit} className="mt-2 sm:mt-0">
-            <input
-              type='text'
-              className='w-[350px] bg-transparent outline-none font-semibold'
-              type="text"
-              className="w-[350px] bg-transparent outline-none"
-              autoFocus
-              value={userInput}
-              onChange={handleInputChange}
-              onKeyDown={handleArrowKeyPress}
-              ref={inputRef}
-              autoComplete="off"
-            />
-          </form>
-        </span>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
 
 const Prompt = (props: { customUserName: string }) => {
   return (
-    <span className='mr-1'>
-      <span className='text-green-400 '>
-        {username}@{hostname}
     <span className="mr-1">
-      <span className="text-green-800 ">
+      <span className="text-green-400 ">
         {props.customUserName == "" ? username : props.customUserName}@
         {hostname}
       </span>
