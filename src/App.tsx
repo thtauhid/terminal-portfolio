@@ -21,8 +21,8 @@ function App() {
   const [userInput, setUserInput] = useState("");
 
   const executeCommand = (command: string) => {
-    if (command.split(" ")[0] == "setname"){
-      command = (command.split(" "))[0] + (command.split(" "))[1];
+    if (command.split(" ")[0].trim().toLowerCase() == "setname"){
+      command = (command.split(" "))[0] + " "+ (command.split(" "))[1];
     }
     else{
       command = (command.split(" "))[0];
