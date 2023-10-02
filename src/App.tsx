@@ -56,7 +56,7 @@ function App() {
     }
     if (options.includes(command)) {
       let output = info.options.find(
-        (option) => option.label === command,
+        (option) => option.label === command
       )!.value;
 
       // check if 'data' exists within the options
@@ -64,7 +64,7 @@ function App() {
         console.log("data exists");
         // append to output
         const data = info.options.find(
-          (option) => option.label === command,
+          (option) => option.label === command
         )!.data;
 
         output += data?.map((item) => {
