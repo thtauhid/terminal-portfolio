@@ -4,9 +4,9 @@ import info from "../data.json";
 import { username, hostname, path, symbol } from "../constants";
 
 const options = info.options.map((option) => option.label);
-import { Queue } from "queue-typescript";
+// import { Queue } from "queue-typescript";
 
-const historyCommand = new Queue<string>();
+const historyCommand:string[] = [];
 let count = 1;
 let historyPos = 1;
 function App() {
@@ -14,14 +14,14 @@ function App() {
     {
       command: "help",
       output:
-        "Here are the available commands: <br />" +
-              info.options
-                .map((option) => option.label + " - " + option.about)
-                .join("<br />") +
-              "<br />" +
-              info.additional_commands
-                .map((option) => option.label + " - " + option.about)
-                .join("<br />"),
+      "Here are the available commands: <br />" +
+      info.options
+      .map((option) => option.label + " - " + option.about)
+      .join("<br />") +
+      "<br />" +
+      info.additional_commands
+      .map((option) => option.label + " - " + option.about)
+      .join("<br />"),
     },
   ]);
   const [customUserName, setCustomUserName] = useState("");
@@ -29,16 +29,15 @@ function App() {
   const handleArrowKeyPress = (event: { key: string }) => {
     if (event.key === "ArrowUp") {
       if (historyPos > 0) {
-        setUserInput(history[historyPos - 1]["command"]);
+        setUserInput(historyCommand[historyPos - 1]);
         historyPos -= 1;
       }
     } else if (event.key === "ArrowDown") {
-      if (historyPos < history.length - 1) {
-        setUserInput(history[historyPos + 1]["command"]);
+      if (historyPos < historyCommand.length - 1) {
+        setUserInput(historyCommand[historyPos + 1]);
         historyPos += 1;
-      } else if ((historyPos = history.length)) {
+      } else if ((historyPos = historyCommand.length)) {
         setUserInput("");
-        // historyPos+=1
       }
     }
   };
@@ -52,9 +51,7 @@ function App() {
     }
     command = command.trim().toLowerCase();
     historyPos = history.length + 1;
-    if (command !== "history") {
-      historyCommand.enqueue(count++ + ` ` + command + `<br>`);
-    }
+    historyCommand.push(command);
     if (options.includes(command)) {
       let output = info.options.find(
         (option) => option.label === command
@@ -148,10 +145,9 @@ function App() {
 
   const displayHistory = () => {
     let his = "";
-    const HistoryArray = historyCommand.toArray();
-    HistoryArray.forEach((i) => {
-      his += i;
-    });
+    for (let index = 0; index < historyCommand.length; index++) {
+      his += index+1 +' ' + historyCommand[index]+"<br />";
+    }
     return his;
   };
 
