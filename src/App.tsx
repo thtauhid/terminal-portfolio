@@ -14,7 +14,14 @@ function App() {
     {
       command: "help",
       output:
-        "Here are the available commands: <br />" + options.join("<br />"),
+        "Here are the available commands: <br />" +
+              info.options
+                .map((option) => option.label + " - " + option.about)
+                .join("<br />") +
+              "<br />" +
+              info.additional_commands
+                .map((option) => option.label + " - " + option.about)
+                .join("<br />"),
     },
   ]);
   const [customUserName, setCustomUserName] = useState("");
