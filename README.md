@@ -39,11 +39,12 @@ Some of the popular ones are:
 - [Vercel](https://vercel.com/) (Recommended)
 - [Netlify](https://www.netlify.com/)
 
-## Deploying to Vercel
+### Deploying to Vercel
 
 Vercel is a recommended platform for deploying your terminal-portfolio. Here are the steps to deploy your project to Vercel and enable Vercel Analytics:
 
 1. Sign in to your Vercel account or create one if you don't have an account yet.
+
 2. Install the Vercel CLI by running the following command:
 
 ```bash
