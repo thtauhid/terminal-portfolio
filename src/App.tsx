@@ -15,13 +15,13 @@ function App() {
       command: "help",
       output:
         "Here are the available commands: <br />" +
-              info.options
-                .map((option) => option.label + " - " + option.about)
-                .join("<br />") +
-              "<br />" +
-              info.additional_commands
-                .map((option) => option.label + " - " + option.about)
-                .join("<br />"),
+        info.options
+          .map((option) => option.label + " - " + option.about)
+          .join("<br />") +
+        "<br />" +
+        info.additional_commands
+          .map((option) => option.label + " - " + option.about)
+          .join("<br />"),
     },
   ]);
   const [customUserName, setCustomUserName] = useState("");
@@ -43,12 +43,11 @@ function App() {
     }
   };
   const executeCommand = (command: string) => {
-    if (command.trim().startsWith("setname")){
+    if (command.trim().startsWith("setname")) {
       command = command;
       //Handled by previous commit
-    }
-    else{
-      command = (command.split(" "))[0];
+    } else {
+      command = command.split(" ")[0];
     }
     command = command.trim().toLowerCase();
     historyPos = history.length + 1;
@@ -57,7 +56,7 @@ function App() {
     }
     if (options.includes(command)) {
       let output = info.options.find(
-        (option) => option.label === command
+        (option) => option.label === command,
       )!.value;
 
       // check if 'data' exists within the options
@@ -65,7 +64,7 @@ function App() {
         console.log("data exists");
         // append to output
         const data = info.options.find(
-          (option) => option.label === command
+          (option) => option.label === command,
         )!.data;
 
         output += data?.map((item) => {
