@@ -22,7 +22,8 @@ function App() {
 
   const executeCommand = (command: string) => {
     if (command.split(" ")[0].trim().toLowerCase() == "setname"){
-      command = (command.split(" "))[0] + " "+ (command.split(" "))[1];
+      command = command;
+      //Handled by previous commit
     }
     else{
       command = (command.split(" "))[0];
