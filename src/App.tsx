@@ -21,7 +21,12 @@ function App() {
   const [userInput, setUserInput] = useState("");
 
   const executeCommand = (command: string) => {
-    command = (command.split(" "))[0];
+    if (command.split(" ")[0] == "setname"){
+      command = (command.split(" "))[0] + (command.split(" "))[1];
+    }
+    else{
+      command = (command.split(" "))[0];
+    }
     command = command.trim().toLowerCase();
     if(command !== "history"){
       historyCommand.enqueue((count++)+` `+command+`<br>`);
