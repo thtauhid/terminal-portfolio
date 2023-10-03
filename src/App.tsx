@@ -169,6 +169,9 @@ function App() {
     e.preventDefault();
     executeCommand(userInput);
     setUserInput("");
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    });
   };
 
   useEffect(() => {
