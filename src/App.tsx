@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { IDataType } from "./types";
 import info from "../data.json";
 import { username, hostname, path, symbol } from "../constants";
 const options = info.options.map((option) => option.label);
@@ -19,12 +20,18 @@ function App() {
       )!.value; // check if 'data' exists within the options
       if (info.options.find((option) => option.label === command)?.data) {
         console.log("data exists"); // append to output
-        const data = info.options.find(
+        const data: Array<IDataType> = info.options.find(
           (option) => option.label === command
-        )!.data;
-        output += data?.map((item) => {
-          return `<br /><br /> <strong><a class="underline" href="${item.url}" target="_blank" rel="noopener norefferer">${item.label}</a></strong> <br /> ${item.value}`;
-        });
+        )!.data ?? [];
+        if(command === "projects"){
+          output += data?.map((item) => {
+            return `<br /><br /> <strong><a class="underline" href="${item.url}" target="_blank" rel="noopener norefferer">${item.label}</a></strong> <br /> ${item.value}`;
+          });
+        } else {
+          output += data?.map((item) => {
+            return `<br /><br /> <strong>${item.label}</strong> <br /> ${item.value}`;
+          });
+        }
       }
       setHistory((history) => [...history, { command, output }]);
     } else {
