@@ -113,7 +113,7 @@ Deploying to Netlify can also be a great idea. Considering the fact that they ar
 
 2. Go to [netlify](netlify.com) and sign up to the platform using your github profile.
 
-3. On your netlify page, go to add new site option and select the import an existing project.
+3. On your netlify page, go to 'add new site' option and select the 'import an existing project'.
 
 4. Follow the prompts and your project is hosted by netlify. Optionally, you can customize the site if you want.
 
