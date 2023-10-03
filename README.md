@@ -6,7 +6,7 @@
 
 A portfolio site template that looks and feels like a terminal.
 
-Production: https://my-terminal-portfolio.vercel.app/
+Production: <https://my-terminal-portfolio.vercel.app/>
 
 ## Installation
 
@@ -88,6 +88,34 @@ vercel
 6. Follow the prompts to configure your deployment settings. Make sure to choose a domain name and set up the deployment environment according to your preferences.
 
 7. Once the deployment is complete, your terminal-portfolio will be live on Vercel, and Vercel Analytics will be enabled by default, providing you with valuable insights into your website's performance.
+
+## Deploying to Netlify
+
+Deploying to Netlify can also be a great idea. Considering the fact that they are a large web hosting server as compared to vercel. For deploying to Netlify, we can use two main approaches and we will discuss them in detail.
+
+### Deploying to Netlify through the CLI
+
+1. Bear in my mind that this project is using Vite framework. To make sure you are using the latest Netlify CLI, run the following command in the project terminal:
+   `bash npm install netlify-cli -g`
+
+2. Next, in the directory of your project, run the following command to create a new file on Netlify:
+   `bash netlify init`
+
+3. In case you are new to Netlify, you will be redirected to create a profile on the platform or you can use your github profile to connect to the platform.
+
+4. Once netlify is initialized, follow the prompts carefully, select the team option if necessary and then optionally personalize the site name if any.
+
+5. Go back to the netlify platform on the browser and reload the page.
+
+### Optionally deploying to Netlify through GitHub
+
+1. Upload your project source code to your github profile.
+
+2. Go to [netlify](netlify.com) and sign up to the platform using your github profile.
+
+3. On your netlify page, go to add new site option and select the import an existing project.
+
+4. Follow the prompts and your project is hosted by netlify. Optionally, you can customize the site if you want.
 
 ## Contributing
 
