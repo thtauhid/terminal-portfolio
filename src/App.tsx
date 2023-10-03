@@ -16,11 +16,11 @@ const WelcomeSection = () => {
       <p className="pt-4 justify-center text-3xl font-bold text-center flex">
         Welcome to my portfolio!
       </p>
-      <p className="text-gray-400 justify-start text-lg pl-2 mt-8 text-start flex">
+      <p className="text-gray-400 justify-start text-lg pl-4 mt-8 text-start flex">
         Instructions - This portfolio is a replica of a terminal. You need to
         provide commands for any functionality.
       </p>
-      <p className="text-gray-400 justify-start text-lg pl-2 text-start flex">
+      <p className="text-gray-400 justify-start text-lg pl-4 text-start flex">
         Hint - Use 'clear' command to clear the terminal.
       </p>
     </div>
@@ -201,7 +201,7 @@ function App() {
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
+    <div className="w-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
       {showWelcome && <WelcomeSection />}
       {/* <p className="pt-4 justify-center text-3xl font-bold text-center flex">
         Welcome to my portfolio!
