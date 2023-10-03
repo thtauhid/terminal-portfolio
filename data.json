@@ -63,6 +63,10 @@
         {
           "label": "Real-time Chat Application",
           "value": "Developed a cutting-edge messaging app with real-time capabilities, supporting both group chats and a fun array of emojis."
+        },
+        {
+          "label": "Ios Development",
+          "value": "IOS development involves creating mobile applications specifically for Apple's iOS operating system using programming languages like Swift or Objective-C and Apple's development tools like Xcode. Developers design, code, and test their apps to provide a seamless and user-friendly experience on iPhones, iPads, and other Apple devices."
         }
       ]
     },
