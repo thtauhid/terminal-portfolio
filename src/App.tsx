@@ -201,7 +201,7 @@ function App() {
   }, []);
 
   return (
-    <div className="w-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
+    <div className="w-screen min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
       {showWelcome && <WelcomeSection />}
       {/* <p className="pt-4 justify-center text-3xl font-bold text-center flex">
         Welcome to my portfolio!
