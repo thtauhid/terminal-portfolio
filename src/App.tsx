@@ -9,7 +9,26 @@ import { Queue } from "queue-typescript";
 const historyCommand = new Queue<string>();
 let count = 1;
 let historyPos = 1;
+
+const WelcomeSection = () => {
+  return (
+    <div>
+      <p className="pt-4 justify-center text-3xl font-bold text-center flex">
+        Welcome to my portfolio!
+      </p>
+      <p className="text-gray-400 justify-start text-lg pl-2 mt-8 text-start flex">
+        Instructions - This portfolio is a replica of a terminal. You need to
+        provide commands for any functionality.
+      </p>
+      <p className="text-gray-400 justify-start text-lg pl-2 text-start flex">
+        Hint - Use 'clear' command to clear the terminal.
+      </p>
+    </div>
+  );
+};
+
 function App() {
+  const [showWelcome, setShowWelcome] = useState(true);
   const [history, setHistory] = useState([
     {
       command: "help",
@@ -101,6 +120,7 @@ function App() {
       } else if (command === "clear") {
         setHistory([]);
         historyPos -= 1;
+        setShowWelcome(false); // Hide welcome section on clear command
       } else if (command === "") {
         setHistory((history) => [
           ...history,
@@ -182,7 +202,8 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
-      <p className="pt-4 justify-center text-3xl font-bold text-center flex">
+      {showWelcome && <WelcomeSection />}
+      {/* <p className="pt-4 justify-center text-3xl font-bold text-center flex">
         Welcome to my portfolio!
       </p>
       <p className="text-gray-400 justify-start text-lg pl-2 mt-8 text-start flex">
@@ -191,7 +212,7 @@ function App() {
       </p>
       <p className="text-gray-400 justify-start text-lg pl-2 text-start flex">
         Hint - Use 'clear' command to clear the terminal.{" "}
-      </p>
+      </p> */}
       <div className="font-semibold text-xl p-2">
         <div className="font-bold text-xl p-2">
           {
