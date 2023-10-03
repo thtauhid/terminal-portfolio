@@ -20,7 +20,7 @@ function App() {
   ]);
   const [userInput, setUserInput] = useState("");
   const executeCommand = (command: string) => {
-    if (!(command.trim().startsWith("setname"))) {
+    if (command.trim().startsWith("setname")) {
       command = command;
       //Handled by previous commit
     } else {
