@@ -2,10 +2,7 @@ import { useParams } from "react-router-dom";
 import { getData, setUsername } from "../api";
 import { useEffect, useRef, useState } from "react";
 import PromptBar from "../components/PromptBar";
-import { Queue } from "queue-typescript";
 import commands from "../commands.json";
-
-const historyCommand = new Queue<string>();
 
 interface State {
   history: {
@@ -27,7 +24,7 @@ interface State {
   customUserName: string;
   userInput: string;
   historyPos: number;
-  historyCommand: Queue<string>;
+  historyCommand: string[];
   count: number;
   showWelcomeMessage: boolean;
 }
@@ -50,7 +47,7 @@ function Profile() {
     customUserName: "",
     userInput: "",
     historyPos: 1,
-    historyCommand: historyCommand,
+    historyCommand: [],
     count: 1,
     showWelcomeMessage: true,
   });
@@ -94,40 +91,36 @@ function Profile() {
 
   const displayHistory = () => {
     let his = "";
-    const HistoryArray = state.historyCommand.toArray();
-    HistoryArray.forEach((i) => {
+    state.historyCommand.forEach((i) => {
       his += i;
     });
     return his;
   };
 
   const executeCommand = (command: string) => {
-    if (command.trim().startsWith("setname")) {
-      command = command;
-      //Handled by previous commit
-    } else {
+    command = command.trim().toLowerCase();
+    if (!command.startsWith("setname")) {
       command = command.split(" ")[0];
     }
-    command = command.trim().toLowerCase();
+
     state.historyPos = state.history.length + 1;
     if (command !== "history") {
-      historyCommand.enqueue(state.count++ + ` ` + command + `<br>`);
+      state.historyCommand.push(state.count++ + ` ` + command + `<br>`);
     }
     if (options.includes(command)) {
       let output = state.userInfo.options.find(
         (option) => option.label === command
       )!.value;
 
-      // check if 'data' exists within the options
       if (
         state.userInfo.options.find((option) => option.label === command)?.data
       ) {
         // append to output
-        const x = state.userInfo.options.find(
+        const data = state.userInfo.options.find(
           (option) => option.label === command
         )!.data;
 
-        output += x?.map((item) => {
+        output += data?.map((item) => {
           return `<br /><br />
               <strong>${item.label}</strong> <br /> 
               ${item.value}`;
@@ -275,8 +268,8 @@ function Profile() {
       <div className="font-bold text-xl p-2">
         {
           /* History */
-          state.history.map((history) => (
-            <div className=" mb-2">
+          state.history.map((history, idx) => (
+            <div className="mb-2" key={idx}>
               <PromptBar customUserName={state.customUserName} />
               <span>{history.command}</span> <br />
               <span dangerouslySetInnerHTML={{ __html: history.output }} />
