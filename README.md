@@ -95,7 +95,7 @@ Deploying to Netlify can also be a great idea. Which is also wonderful web hosti
 
 ### Deploying to Netlify through the CLI
 
-1. Bear in my mind that this project is using Vite framework. To make sure you are using the latest Netlify CLI, run the following command in the project terminal:
+1. Bear in mind that this project is using Vite framework. To make sure you are using the latest Netlify CLI, run the following command in the project terminal:
    `npm install netlify-cli -g`
 
 2. Next, in the directory of your project, run the following command to create a new file on Netlify:
