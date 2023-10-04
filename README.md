@@ -1,6 +1,8 @@
+# terminal-portfolio
+
 ![image](https://github.com/thtauhid/terminal-portfolio/assets/13254850/23ecf4cd-89d4-4eed-aa2c-5a6c31f96c51)
 
-# terminal-portfolio
+Read our goals and roadmap [here](ROADMAP.md).
 
 ## About
 
