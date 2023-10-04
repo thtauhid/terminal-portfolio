@@ -91,15 +91,15 @@ vercel
 
 ## Deploying to Netlify
 
-Deploying to Netlify can also be a great idea. Considering the fact that they are a large web hosting server as compared to vercel. For deploying to Netlify, we can use two main approaches and we will discuss them in detail.
+Deploying to Netlify can also be a great idea. Which is also wonderful web hosting platform. For deploying to Netlify, we can use two main approaches and we will discuss them in detail.
 
 ### Deploying to Netlify through the CLI
 
 1. Bear in my mind that this project is using Vite framework. To make sure you are using the latest Netlify CLI, run the following command in the project terminal:
-   `bash npm install netlify-cli -g`
+   `npm install netlify-cli -g`
 
 2. Next, in the directory of your project, run the following command to create a new file on Netlify:
-   `bash netlify init`
+   `netlify init`
 
 3. In case you are new to Netlify, you will be redirected to create a profile on the platform or you can use your github profile to connect to the platform.
 
