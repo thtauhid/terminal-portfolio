@@ -140,8 +140,6 @@ function Homepage() {
       // functionality for setname command
       else if (command.trim().startsWith("theme")) {
         const commands: string[] = userInput.trim().split(" ");
-        // const themeToBeSet: string = userInput.trim().split(" ")[2];
-        // const newTheme: string = themes[themes.indexOf(themeToBeSet.toLowerCase())];
         switch (commands.length) {
           case 1:
             setHistory((history) => [
@@ -273,10 +271,6 @@ function Homepage() {
       document.removeEventListener("click", focusInput);
     };
   }, []);
-
-  useEffect(() => {
-    console.info("Theme changed to ", currentTheme);
-  }, [currentTheme]);
 
   return (
     <div className={`${currentTheme}`}>
