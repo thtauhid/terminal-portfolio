@@ -111,7 +111,7 @@ Deploying to Netlify can also be a great idea. Considering the fact that they ar
 
 1. Upload your project source code to your github profile.
 
-2. Go to [netlify](netlify.com) and sign up to the platform using your github profile.
+2. Go to [netlify](https://www.netlify.com/) and sign up to the platform using your github profile.
 
 3. On your netlify page, go to 'add new site' option and select the 'import an existing project'.
 
