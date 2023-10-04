@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import info from "../data.json";
-import { username, hostname, path, symbol } from "../constants";
+import { username, hostname, path, symbol, themes } from "../constants";
 
 const options = info.options.map((option) => option.label);
 import { Queue } from "queue-typescript";
@@ -9,7 +9,10 @@ import { Queue } from "queue-typescript";
 const historyCommand = new Queue<string>();
 let count = 1;
 let historyPos = 1;
+
+
 function App() {
+  const [currentTheme, setTheme] = useState<string>(themes[0]);
   const [history, setHistory] = useState([
     {
       command: "help",
@@ -133,6 +136,93 @@ function App() {
             output: `Hello ${name}!`,
           },
         ]);
+      }
+      // functionality for setname command
+      else if (command.trim().startsWith("theme")) {
+        const commands: string[] = userInput.trim().split(" ");
+        // const themeToBeSet: string = userInput.trim().split(" ")[2];
+        // const newTheme: string = themes[themes.indexOf(themeToBeSet.toLowerCase())];
+        switch (commands.length) {
+          case 1:
+            setHistory((history) => [
+            ...history,
+              {
+                command,
+                output: `
+                - run 'theme list' to list themes<br />
+                - run 'theme set [<i>theme_name<i>]' to set theme
+                `,
+              },
+            ]);
+            break;
+          case 2:
+           if(commands[1] === "list") {
+            setHistory((history) => [
+              ...history,
+                {
+                  command: userInput.trim(),
+                  output: `Available themes: ${themes.join("&nbsp;")}`,
+                },
+              ]);
+           }
+          else if(commands[1] === "set") {
+            setHistory((history) => [
+              ...history,
+                {
+                  command: userInput.trim(),
+                  output: `Invalid <i>theme name</i> passed. Run 'theme list' to list available themes`,
+                },
+              ]);
+           } else {
+            setHistory((history) => [
+              ...history,
+                {
+                  command: userInput.trim(),
+                  output: `Invalid subcommand: ${commands[1]}`,
+                },
+              ]);
+           }
+            break;
+          case 3:
+            if(commands[1] !== 'set') {
+              setHistory((history) => [
+                ...history,
+                  {
+                    command: userInput.trim(),
+                    output: `Invalid subcommand: ${commands[1]}`,
+                  },
+                ]);
+            } else {
+              if(themes.indexOf(commands[2]) === -1) {
+                setHistory((history) => [
+                  ...history,
+                    {
+                      command: userInput.trim(),
+                      output: `Invalid theme: ${commands[2]}`,
+                    },
+                  ]);
+              } else {
+                setTheme(themes[themes.indexOf(commands[2])]);
+                setHistory((history) => [
+                  ...history,
+                    {
+                      command: userInput.trim(),
+                      output: `${themes[themes.indexOf(commands[2])]} theme activated`,
+                    },
+                  ]);
+              }
+            }
+            break;
+          default:
+            setHistory((history) => [
+              ...history,
+                {
+                  command: userInput.trim(),
+                  output: `Invalid subcommands`,
+                },
+              ]);
+            break;
+        }
       } else {
         setHistory((history) => [
           ...history,
@@ -183,35 +273,41 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    console.info("Theme changed to ", currentTheme)
+  }, [currentTheme])
+
   return (
-    <div className="font-bold text-xl p-2">
-      {
-        /* History */
-        history.map((history) => (
-          <div className=" mb-2">
-            <Prompt customUserName={customUserName} />
-            <span>{history.command}</span> <br />
-            <span dangerouslySetInnerHTML={{ __html: history.output }} />
-          </div>
-        ))
-      }
-      {/* Prompt */}
-      <div className="flex flex-col sm:flex-row">
-        <Prompt customUserName={customUserName} />
-        <span>
-          <form onSubmit={handleSubmit} className="mt-2 sm:mt-0">
-            <input
-              type="text"
-              className="w-[350px] bg-transparent outline-none"
-              autoFocus
-              value={userInput}
-              onChange={handleInputChange}
-              onKeyDown={handleArrowKeyPress}
-              ref={inputRef}
-              autoComplete="off"
-            />
-          </form>
-        </span>
+    <div className={currentTheme}>
+      <div className="font-bold text-xl p-2 w-[100vw] min-h-[100vh] bg-bgcol">
+        {
+          /* History */
+          history.map((history) => (
+            <div className="mb-2 text-command">
+              <Prompt customUserName={customUserName} />
+              <span>{history.command}</span> <br />
+              <span dangerouslySetInnerHTML={{ __html: history.output }} />
+            </div>
+          ))
+        }
+        {/* Prompt */}
+        <div className="flex flex-col sm:flex-row">
+          <Prompt customUserName={customUserName} />
+          <span>
+            <form onSubmit={handleSubmit} className="mt-2 sm:mt-0">
+              <input
+                type="text"
+                className="w-[350px] bg-transparent outline-none text-command"
+                autoFocus
+                value={userInput}
+                onChange={handleInputChange}
+                onKeyDown={handleArrowKeyPress}
+                ref={inputRef}
+                autoComplete="off"
+              />
+            </form>
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -220,11 +316,11 @@ function App() {
 const Prompt = (props: { customUserName: string }) => {
   return (
     <span className="mr-1">
-      <span className="text-green-800 ">
+      <span className="text-shebang">
         {props.customUserName == "" ? username : props.customUserName}@
         {hostname}
       </span>
-      :<span className="text-blue-700">{path}</span>
+      :<span className="text-symbol">{path}</span>
       {symbol}
     </span>
   );
