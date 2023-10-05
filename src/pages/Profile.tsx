@@ -108,14 +108,6 @@ function Profile() {
     return his;
   };
 
-  useEffect(() => {
-    console.log({
-      history: state.history,
-      historyPos: state.historyPos,
-      historyCommand: state.historyCommand,
-    });
-  }, [state.history, state.historyCommand, state.historyPos]);
-
   const executeCommand = (command: string) => {
     command = command.trim().toLowerCase();
     if (!command.startsWith("setname")) {
