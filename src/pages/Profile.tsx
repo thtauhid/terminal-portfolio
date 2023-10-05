@@ -123,7 +123,11 @@ function Profile() {
     }
 
     state.historyPos = state.history.length + 1;
-    if (command !== "history" && command !== "theme") {
+    if (
+      command !== "history" &&
+      command === "theme" &&
+      state.userInput.split(" ").length === 1
+    ) {
       state.historyCommand.push(state.count++ + ` ` + command + `<br>`);
     }
     if (options.includes(command)) {
@@ -231,9 +235,6 @@ function Profile() {
       // functionality for theme command
       else if (command.trim().startsWith("theme")) {
         const commands: string[] = state.userInput.trim().split(" ");
-        state.historyCommand.push(
-          state.count++ + ` ` + state.userInput.trim() + `<br>`
-        );
         switch (commands.length) {
           case 1:
             setState((prev) => ({
@@ -284,6 +285,7 @@ function Profile() {
                   },
                 ],
               }));
+              return;
             }
             break;
           case 3:
@@ -310,6 +312,7 @@ function Profile() {
                     },
                   ],
                 }));
+                return;
               } else {
                 setTheme(themes[themes.indexOf(commands[2])]);
                 setState((prev) => ({
@@ -338,8 +341,11 @@ function Profile() {
                 },
               ],
             }));
-            break;
+            return;
         }
+        state.historyCommand.push(
+          state.count++ + ` ` + state.userInput.trim() + `<br>`
+        );
       } else {
         setState((prev) => ({
           ...prev,
