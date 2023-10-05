@@ -10,6 +10,7 @@ import {
 import PromptBar from "../components/PromptBar";
 import commands from "../commands.json";
 import { themes } from "../../constants";
+import { UserData } from "../utils/LocalStorage";
 
 interface State {
   history: {
@@ -37,6 +38,8 @@ interface State {
 }
 
 function Profile() {
+  UserData.init();
+
   const { username } = useParams();
 
   const [state, setState]: [State, Dispatch<SetStateAction<State>>] =
@@ -52,7 +55,7 @@ function Profile() {
           },
         ],
       },
-      customUserName: "",
+      customUserName: UserData.get("name"),
       userInput: "",
       historyPos: 1,
       historyCommand: [],
@@ -61,7 +64,9 @@ function Profile() {
     });
 
   const [currentTheme, setTheme]: [string, Dispatch<SetStateAction<string>>] =
-    useState<string>(themes[0]);
+    useState<string>(
+      UserData.get("theme") === "" ? themes[0] : UserData.get("theme")
+    );
 
   useEffect(() => {
     setUsername(username!);
@@ -212,6 +217,8 @@ function Profile() {
           ...prev,
           customUserName: name,
         }));
+        // saving into local storage to make data persistent
+        UserData.set("name", name);
         // update history
         setState((prev) => ({
           ...prev,
@@ -306,7 +313,9 @@ function Profile() {
                 }));
                 return;
               } else {
-                setTheme(themes[themes.indexOf(commands[2])]);
+                const chosenTheme: string = themes[themes.indexOf(commands[2])];
+                setTheme(chosenTheme);
+                UserData.set("theme", chosenTheme);
                 setState((prev) => ({
                   ...prev,
                   history: [
