@@ -5,6 +5,7 @@ import info from "../../data.json";
 const options = info.options.map((option) => option.label);
 import { Queue } from "queue-typescript";
 import PromptBar from "../components/PromptBar";
+import {IDataType} from "../types"
 
 const historyCommand = new Queue<string>();
 let count = 1;
@@ -64,9 +65,9 @@ function Homepage() {
       if (info.options.find((option) => option.label === command)?.data) {
         console.log("data exists");
         // append to output
-        const data = info.options.find(
+        const data: Array<IDataType> = info.options.find(
           (option) => option.label === command
-        )!.data;
+        )!.data ?? [];
 
         if(command === "projects"){
           output += data?.map((item) => {
