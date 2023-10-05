@@ -5,6 +5,7 @@ import info from "../../data.json";
 const options = info.options.map((option) => option.label);
 import { Queue } from "queue-typescript";
 import PromptBar from "../components/PromptBar";
+import WindowTitleBar from "../components/WindowTitleBar";
 
 const historyCommand = new Queue<string>();
 let count = 1;
@@ -185,36 +186,39 @@ function Homepage() {
   }, []);
 
   return (
-    <div className="font-bold text-xl p-2">
-      {
-        /* History */
-        history.map((history) => (
-          <div className=" mb-2">
-            <PromptBar customUserName={customUserName} />
-            <span>{history.command}</span> <br />
-            <span dangerouslySetInnerHTML={{ __html: history.output }} />
-          </div>
-        ))
-      }
-      {/* Prompt */}
-      <div className="flex flex-col sm:flex-row">
-        <PromptBar customUserName={customUserName} />
-        <span>
-          <form onSubmit={handleSubmit} className="mt-2 sm:mt-0">
-            <input
-              type="text"
-              className="w-[350px] bg-transparent outline-none"
-              autoFocus
-              value={userInput}
-              onChange={handleInputChange}
-              onKeyDown={handleArrowKeyPress}
-              ref={inputRef}
-              autoComplete="off"
-            />
-          </form>
-        </span>
+    <>
+      <WindowTitleBar customUserName={customUserName} />
+      <div className="font-bold text-xl p-2">
+        {
+          /* History */
+          history.map((history) => (
+            <div className=" mb-2">
+              <PromptBar customUserName={customUserName} />
+              <span>{history.command}</span> <br />
+              <span dangerouslySetInnerHTML={{ __html: history.output }} />
+            </div>
+          ))
+        }
+        {/* Prompt */}
+        <div className="flex flex-col sm:flex-row">
+          <PromptBar customUserName={customUserName} />
+          <span>
+            <form onSubmit={handleSubmit} className="mt-2 sm:mt-0">
+              <input
+                type="text"
+                className="w-[350px] bg-transparent outline-none"
+                autoFocus
+                value={userInput}
+                onChange={handleInputChange}
+                onKeyDown={handleArrowKeyPress}
+                ref={inputRef}
+                autoComplete="off"
+              />
+            </form>
+          </span>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
