@@ -1,6 +1,8 @@
+# terminal-portfolio
+
 ![image](https://github.com/thtauhid/terminal-portfolio/assets/13254850/23ecf4cd-89d4-4eed-aa2c-5a6c31f96c51)
 
-# terminal-portfolio
+Read our goals and roadmap [here](ROADMAP.md).
 
 ## About
 
@@ -102,6 +104,7 @@ Feel free to open an issue if you find a bug or want to suggest a feature.
 3. Please make sure to read the [rules](https://hacktoberfest.com/participation/) before opening a pull request.
 4. The maintainer(s) will add the `hacktoberfest-accepted` label after reviewing and accepting your pull request.
 5. Refer to the dedicated [hacktoberfest project view](https://github.com/users/thtauhid/projects/1/views/2) to see what issues are available to work on.
+6. Low quality PRs will not be merged
 
 ## Contributors
 
