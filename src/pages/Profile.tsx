@@ -3,6 +3,7 @@ import { getData, setUsername } from "../api";
 import { useEffect, useRef, useState } from "react";
 import PromptBar from "../components/PromptBar";
 import commands from "../commands.json";
+import WindowTitleBar from "../components/WindowTitleBar";
 
 interface State {
   history: {
@@ -260,6 +261,7 @@ function Profile() {
   }, []);
   return (
     <div>
+      <WindowTitleBar customeUsername={state.customUserName} />
       {state.showWelcomeMessage && (
         <p className="font-bold p-2">
           Type 'help' to view all available commands
