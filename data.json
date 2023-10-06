@@ -11,7 +11,7 @@
     {
       "label": "history",
       "about": "To know about history"
-    },
+   },
     {
       "label": "setname",
       "about": "To replace default 'visitor' name with your name"
@@ -54,19 +54,23 @@
       "data": [
         {
           "label": "E-commerce Platform",
-          "value": "Designed and developed a dynamic e-commerce website, featuring seamless payment processing and an extensive product catalog."
+          "value": "Designed and developed a dynamic e-commerce website, featuring seamless payment processing and an extensive product catalog.",
+"url": "https://www.google.com"
         },
         {
           "label": "Inventory Management System",
-          "value": "Crafted an intuitive application for efficient tracking and management of inventory in warehouse environments."
+          "value": "Crafted an intuitive application for efficient tracking and management of inventory in warehouse environments.",
+"url": "https://www.google.com"
         },
         {
           "label": "Social Media Analytics Dashboard",
-          "value": "Built a powerful tool for analyzing social media data, providing insightful reports and visualizations."
+          "value": "Built a powerful tool for analyzing social media data, providing insightful reports and visualizations.",
+"url": "https://www.google.com"
         },
         {
           "label": "Real-time Chat Application",
-          "value": "Developed a cutting-edge messaging app with real-time capabilities, supporting both group chats and a fun array of emojis."
+          "value": "Developed a cutting-edge messaging app with real-time capabilities, supporting both group chats and a fun array of emojis.",
+"url": "https://www.google.com"
         }
       ]
     },

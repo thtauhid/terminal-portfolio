@@ -6,6 +6,7 @@ import { themes } from "../../constants";
 const options = info.options.map((option) => option.label);
 import { Queue } from "queue-typescript";
 import PromptBar from "../components/PromptBar";
+import { IDataType } from "../types";
 
 const historyCommand = new Queue<string>();
 let count = 1;
@@ -66,15 +67,18 @@ function Homepage() {
       if (info.options.find((option) => option.label === command)?.data) {
         console.log("data exists");
         // append to output
-        const data = info.options.find(
-          (option) => option.label === command
-        )!.data;
+        const data: Array<IDataType> =
+          info.options.find((option) => option.label === command)!.data ?? [];
 
-        output += data?.map((item) => {
-          return `<br /><br />
-          <strong>${item.label}</strong> <br /> 
-          ${item.value}`;
-        });
+        if (command === "projects") {
+          output += data?.map((item) => {
+            return `<br /><br /> <strong><a class="underline" href="${item.url}" target="_blank" rel="noopener norefferer">${item.label}</a></strong> <br /> ${item.value}`;
+          });
+        } else {
+          output += data?.map((item) => {
+            return `<br /><br /> <strong>${item.label}</strong> <br /> ${item.value}`;
+          });
+        }
       }
 
       setHistory((history) => [
