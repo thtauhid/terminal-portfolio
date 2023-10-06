@@ -1,9 +1,16 @@
 import { useParams } from "react-router-dom";
 import { getData, setUsername } from "../api";
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 import PromptBar from "../components/PromptBar";
 import commands from "../commands.json";
 import WindowTitleBar from "../components/WindowTitleBar";
+import { themes } from "../../constants";
 
 interface State {
   history: {
@@ -33,25 +40,29 @@ interface State {
 function Profile() {
   const { username } = useParams();
 
-  const [state, setState] = useState<State>({
-    history: [],
-    userInfo: {
-      name: "",
-      options: [
-        {
-          label: "",
-          about: "",
-          value: "",
-        },
-      ],
-    },
-    customUserName: "",
-    userInput: "",
-    historyPos: 1,
-    historyCommand: [],
-    count: 1,
-    showWelcomeMessage: true,
-  });
+  const [state, setState]: [State, Dispatch<SetStateAction<State>>] =
+    useState<State>({
+      history: [],
+      userInfo: {
+        name: "",
+        options: [
+          {
+            label: "",
+            about: "",
+            value: "",
+          },
+        ],
+      },
+      customUserName: "",
+      userInput: "",
+      historyPos: 1,
+      historyCommand: [],
+      count: 1,
+      showWelcomeMessage: true,
+    });
+
+  const [currentTheme, setTheme]: [string, Dispatch<SetStateAction<string>>] =
+    useState<string>(themes[0]);
 
   useEffect(() => {
     setUsername(username!);
@@ -105,7 +116,11 @@ function Profile() {
     }
 
     state.historyPos = state.history.length + 1;
-    if (command !== "history") {
+    if (
+      command !== "history" &&
+      command === "theme" &&
+      state.userInput.split(" ").length === 1
+    ) {
       state.historyCommand.push(state.count++ + ` ` + command + `<br>`);
     }
     if (options.includes(command)) {
@@ -199,7 +214,6 @@ function Profile() {
           customUserName: name,
         }));
         // update history
-
         setState((prev) => ({
           ...prev,
           history: [
@@ -210,6 +224,121 @@ function Profile() {
             },
           ],
         }));
+      }
+      // functionality for theme command
+      else if (command.trim().startsWith("theme")) {
+        const commands: string[] = state.userInput.trim().split(" ");
+        switch (commands.length) {
+          case 1:
+            setState((prev) => ({
+              ...prev,
+              history: [
+                ...prev.history,
+                {
+                  command,
+                  output: `
+                  - run 'theme list' to list themes<br />
+                  - run 'theme set [<i>theme_name<i>]' to set theme
+                  `,
+                },
+              ],
+            }));
+            break;
+          case 2:
+            if (commands[1] === "list") {
+              setState((prev) => ({
+                ...prev,
+                history: [
+                  ...prev.history,
+                  {
+                    command: state.userInput.trim(),
+                    output: `Available themes: ${themes.join("&nbsp;")}`,
+                  },
+                ],
+              }));
+            } else if (commands[1] === "set") {
+              setState((prev) => ({
+                ...prev,
+                history: [
+                  ...prev.history,
+                  {
+                    command: state.userInput.trim(),
+                    output: `Invalid <i>theme name</i> passed. Run 'theme list' to list available themes`,
+                  },
+                ],
+              }));
+            } else {
+              setState((prev) => ({
+                ...prev,
+                history: [
+                  ...prev.history,
+                  {
+                    command: state.userInput.trim(),
+                    output: `Invalid subcommand: ${commands[1]}`,
+                  },
+                ],
+              }));
+              return;
+            }
+            break;
+          case 3:
+            if (commands[1] !== "set") {
+              setState((prev) => ({
+                ...prev,
+                history: [
+                  ...prev.history,
+                  {
+                    command: state.userInput.trim(),
+                    output: `Invalid subcommand: ${commands[1]}`,
+                  },
+                ],
+              }));
+            } else {
+              if (themes.indexOf(commands[2]) === -1) {
+                setState((prev) => ({
+                  ...prev,
+                  history: [
+                    ...prev.history,
+                    {
+                      command: state.userInput.trim(),
+                      output: `Invalid theme: ${commands[2]}`,
+                    },
+                  ],
+                }));
+                return;
+              } else {
+                setTheme(themes[themes.indexOf(commands[2])]);
+                setState((prev) => ({
+                  ...prev,
+                  history: [
+                    ...prev.history,
+                    {
+                      command: state.userInput.trim(),
+                      output: `${
+                        themes[themes.indexOf(commands[2])]
+                      } theme activated`,
+                    },
+                  ],
+                }));
+              }
+            }
+            break;
+          default:
+            setState((prev) => ({
+              ...prev,
+              history: [
+                ...prev.history,
+                {
+                  command: state.userInput.trim(),
+                  output: `Invalid subcommands`,
+                },
+              ],
+            }));
+            return;
+        }
+        state.historyCommand.push(
+          state.count++ + ` ` + state.userInput.trim() + `<br>`
+        );
       } else {
         setState((prev) => ({
           ...prev,
@@ -260,7 +389,7 @@ function Profile() {
     };
   }, []);
   return (
-    <div>
+    <div className={`${currentTheme} min-h-[100vh] w-[100vw] bg-bgcol`}>
       <WindowTitleBar customeUsername={state.customUserName} />
       {state.showWelcomeMessage && (
         <p className="font-bold p-2">
