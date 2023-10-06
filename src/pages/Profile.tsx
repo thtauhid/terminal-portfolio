@@ -390,7 +390,7 @@ function Profile() {
   }, []);
   return (
     <div className={`${currentTheme} min-h-[100vh] w-[100vw] bg-bgcol`}>
-      <WindowTitleBar customeUsername={state.customUserName} />
+      <WindowTitleBar customUserName={state.customUserName} />
       {state.showWelcomeMessage && (
         <p className="font-bold p-2">
           Type 'help' to view all available commands
