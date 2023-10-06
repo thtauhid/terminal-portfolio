@@ -1,17 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 
 import info from "../../data.json";
+import { themes } from "../../constants";
 
 const options = info.options.map((option) => option.label);
 import { Queue } from "queue-typescript";
 import PromptBar from "../components/PromptBar";
-import {IDataType} from "../types"
+import { IDataType } from "../types";
 
 const historyCommand = new Queue<string>();
 let count = 1;
 let historyPos = 1;
 
 function Homepage() {
+  const [currentTheme, setTheme] = useState<string>(themes[0]);
   const [history, setHistory] = useState([
     {
       command: "help",
@@ -65,11 +67,10 @@ function Homepage() {
       if (info.options.find((option) => option.label === command)?.data) {
         console.log("data exists");
         // append to output
-        const data: Array<IDataType> = info.options.find(
-          (option) => option.label === command
-        )!.data ?? [];
+        const data: Array<IDataType> =
+          info.options.find((option) => option.label === command)!.data ?? [];
 
-        if(command === "projects"){
+        if (command === "projects") {
           output += data?.map((item) => {
             return `<br /><br /> <strong><a class="underline" href="${item.url}" target="_blank" rel="noopener norefferer">${item.label}</a></strong> <br /> ${item.value}`;
           });
@@ -139,6 +140,92 @@ function Homepage() {
             output: `Hello ${name}!`,
           },
         ]);
+      }
+      // functionality for setname command
+      else if (command.trim().startsWith("theme")) {
+        const commands: string[] = userInput.trim().split(" ");
+        switch (commands.length) {
+          case 1:
+            setHistory((history) => [
+              ...history,
+              {
+                command,
+                output: `
+                - run 'theme list' to list themes<br />
+                - run 'theme set [<i>theme_name<i>]' to set theme
+                `,
+              },
+            ]);
+            break;
+          case 2:
+            if (commands[1] === "list") {
+              setHistory((history) => [
+                ...history,
+                {
+                  command: userInput.trim(),
+                  output: `Available themes: ${themes.join("&nbsp;")}`,
+                },
+              ]);
+            } else if (commands[1] === "set") {
+              setHistory((history) => [
+                ...history,
+                {
+                  command: userInput.trim(),
+                  output: `Invalid <i>theme name</i> passed. Run 'theme list' to list available themes`,
+                },
+              ]);
+            } else {
+              setHistory((history) => [
+                ...history,
+                {
+                  command: userInput.trim(),
+                  output: `Invalid subcommand: ${commands[1]}`,
+                },
+              ]);
+            }
+            break;
+          case 3:
+            if (commands[1] !== "set") {
+              setHistory((history) => [
+                ...history,
+                {
+                  command: userInput.trim(),
+                  output: `Invalid subcommand: ${commands[1]}`,
+                },
+              ]);
+            } else {
+              if (themes.indexOf(commands[2]) === -1) {
+                setHistory((history) => [
+                  ...history,
+                  {
+                    command: userInput.trim(),
+                    output: `Invalid theme: ${commands[2]}`,
+                  },
+                ]);
+              } else {
+                setTheme(themes[themes.indexOf(commands[2])]);
+                setHistory((history) => [
+                  ...history,
+                  {
+                    command: userInput.trim(),
+                    output: `${
+                      themes[themes.indexOf(commands[2])]
+                    } theme activated`,
+                  },
+                ]);
+              }
+            }
+            break;
+          default:
+            setHistory((history) => [
+              ...history,
+              {
+                command: userInput.trim(),
+                output: `Invalid subcommands`,
+              },
+            ]);
+            break;
+        }
       } else {
         setHistory((history) => [
           ...history,
@@ -190,34 +277,36 @@ function Homepage() {
   }, []);
 
   return (
-    <div className="font-bold text-xl p-2">
-      {
-        /* History */
-        history.map((history) => (
-          <div className=" mb-2">
-            <PromptBar customUserName={customUserName} />
-            <span>{history.command}</span> <br />
-            <span dangerouslySetInnerHTML={{ __html: history.output }} />
-          </div>
-        ))
-      }
-      {/* Prompt */}
-      <div className="flex flex-col sm:flex-row">
-        <PromptBar customUserName={customUserName} />
-        <span>
-          <form onSubmit={handleSubmit} className="mt-2 sm:mt-0">
-            <input
-              type="text"
-              className="w-[350px] bg-transparent outline-none"
-              autoFocus
-              value={userInput}
-              onChange={handleInputChange}
-              onKeyDown={handleArrowKeyPress}
-              ref={inputRef}
-              autoComplete="off"
-            />
-          </form>
-        </span>
+    <div className={`${currentTheme}`}>
+      <div className="font-bold text-xl p-2 w-[100vw] min-h-[100vh] bg-bgcol">
+        {
+          /* History */
+          history.map((history) => (
+            <div className="mb-2 text-command">
+              <PromptBar customUserName={customUserName} />
+              <span>{history.command}</span> <br />
+              <span dangerouslySetInnerHTML={{ __html: history.output }} />
+            </div>
+          ))
+        }
+        {/* Prompt */}
+        <div className="flex flex-col sm:flex-row">
+          <PromptBar customUserName={customUserName} />
+          <span>
+            <form onSubmit={handleSubmit} className="mt-2 sm:mt-0">
+              <input
+                type="text"
+                className="w-[350px] bg-transparent outline-none text-command"
+                autoFocus
+                value={userInput}
+                onChange={handleInputChange}
+                onKeyDown={handleArrowKeyPress}
+                ref={inputRef}
+                autoComplete="off"
+              />
+            </form>
+          </span>
+        </div>
       </div>
     </div>
   );

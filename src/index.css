@@ -5,7 +5,6 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #300a24;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,6 +17,7 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
+  overflow-x: hidden;
 }
 
 @tailwind base;
