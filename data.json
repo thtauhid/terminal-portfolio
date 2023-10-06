@@ -15,6 +15,10 @@
     {
       "label": "setname",
       "about": "To replace default 'visitor' name with your name"
+    },
+    {
+      "label": "theme",
+      "about": "To customize theme"
     }
   ],
   "options": [
