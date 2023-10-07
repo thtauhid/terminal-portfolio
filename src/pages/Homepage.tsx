@@ -70,15 +70,9 @@ function Homepage() {
         const data: Array<IDataType> =
           info.options.find((option) => option.label === command)!.data ?? [];
 
-        if (command === "projects") {
-          output += data?.map((item) => {
-            return `<br /><br /> <strong><a class="underline" href="${item.url}" target="_blank" rel="noopener norefferer">${item.label}</a></strong> <br /> ${item.value}`;
-          });
-        } else {
           output += data?.map((item) => {
             return `<br /><br /> <strong>${item.label}</strong> <br /> ${item.value}`;
           });
-        }
       }
 
       setHistory((history) => [

@@ -25,6 +25,7 @@ interface State {
       data?: {
         label: string;
         value: string;
+        url?:  string;
       }[];
     }[];
   };
@@ -134,12 +135,17 @@ function Profile() {
         const data = state.userInfo.options.find(
           (option) => option.label === command
         )!.data;
-
-        output += data?.map((item) => {
+        if (command === "projects") {
+          output += data?.map((item) => {
+            return `<br /><br /> <strong><a class="underline" href="${item.url}" target="_blank" rel="noopener norefferer">${item.label}</a></strong> <br /> ${item.value}`;
+          });
+        } else {
+          output += data?.map((item) => {
           return `<br /><br />
               <strong>${item.label}</strong> <br /> 
               ${item.value}`;
-        });
+            });
+          }
       }
 
       setState((prev) => ({
