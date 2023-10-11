@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 import info from "../data.json";
 import { username, hostname, path, symbol } from "../constants";

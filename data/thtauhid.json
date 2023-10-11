@@ -1,26 +1,5 @@
 {
-  "additional_commands": [
-    {
-      "label": "help",
-      "about": "View all commands"
-    },
-    {
-      "label": "clear",
-      "about": "Clear the screen"
-    },
-    {
-      "label": "history",
-      "about": "To know about history"
-   },
-    {
-      "label": "setname",
-      "about": "To replace default 'visitor' name with your name"
-    },
-    {
-      "label": "theme",
-      "about": "To customize theme"
-    }
-  ],
+  "name": "Tasnimul H. Tauhid",
   "options": [
     {
       "label": "about",
@@ -54,23 +33,19 @@
       "data": [
         {
           "label": "E-commerce Platform",
-          "value": "Designed and developed a dynamic e-commerce website, featuring seamless payment processing and an extensive product catalog.",
-"url": "https://www.google.com"
+          "value": "Designed and developed a dynamic e-commerce website, featuring seamless payment processing and an extensive product catalog."
         },
         {
           "label": "Inventory Management System",
-          "value": "Crafted an intuitive application for efficient tracking and management of inventory in warehouse environments.",
-"url": "https://www.google.com"
+          "value": "Crafted an intuitive application for efficient tracking and management of inventory in warehouse environments."
         },
         {
           "label": "Social Media Analytics Dashboard",
-          "value": "Built a powerful tool for analyzing social media data, providing insightful reports and visualizations.",
-"url": "https://www.google.com"
+          "value": "Built a powerful tool for analyzing social media data, providing insightful reports and visualizations."
         },
         {
           "label": "Real-time Chat Application",
-          "value": "Developed a cutting-edge messaging app with real-time capabilities, supporting both group chats and a fun array of emojis.",
-"url": "https://www.google.com"
+          "value": "Developed a cutting-edge messaging app with real-time capabilities, supporting both group chats and a fun array of emojis."
         }
       ]
     },
