@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 
 import info from "../data.json";
 import { username, hostname, path, symbol } from "../constants";
@@ -261,5 +262,10 @@ const Prompt = (props: { customUserName: string }) => {
     </span>
   );
 };
+
+
+function App() {
+  return <RouterProvider router={router} />;
+}
 
 export default App;
