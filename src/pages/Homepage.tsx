@@ -6,6 +6,7 @@ import { themes } from "../../constants";
 const options = info.options.map((option) => option.label);
 import { Queue } from "queue-typescript";
 import PromptBar from "../components/PromptBar";
+import WindowTitleBar from "../components/WindowTitleBar";
 import { IDataType } from "../types";
 
 const historyCommand = new Queue<string>();
@@ -278,6 +279,7 @@ function Homepage() {
 
   return (
     <div className={`${currentTheme}`}>
+      <WindowTitleBar customUserName={customUserName} />
       <div className="font-bold text-xl p-2 w-[100vw] min-h-[100vh] bg-bgcol">
         {
           /* History */
